@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import styles from './Clock.module.css';
 
 export default function Clock() {
 
@@ -25,10 +24,8 @@ export default function Clock() {
     }, []);
 
     return (
-        <div className={styles.clock}>
-            <span className={styles.time}>
-                {clock}
-            </span>
+        <div className="text-4xl font-mono text-gray-700">
+            {clock}
         </div>
     );
 }

@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react';
-import styles from './Timer.module.css';
 
 export default function Timer() {
 
@@ -19,7 +18,10 @@ export default function Timer() {
     return () => clearInterval(id);
     }, [time]);
 
-    return <div className={styles.timer}>
-        <span className={styles.time}>{time}</span>
-    </div>;
+    return (
+        // time이 0이면 '시간 종료!' 출력, 아니면 남은 시간 출력
+        <div className="text-2xl font-mono text-gray-500">
+            {time === 0 ? '시간 종료!' : `남은 시간 : ${time}초`}
+        </div>
+    );
 }
