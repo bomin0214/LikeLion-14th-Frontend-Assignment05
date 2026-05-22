@@ -18,7 +18,7 @@ export default function Clock() {
         }, 1000);
 
         return () => {
-            clearInterval(id);
+            clearInterval(id); // 컴포넌트 사라질 때 타이머 정리
         };
 
     }, []);
