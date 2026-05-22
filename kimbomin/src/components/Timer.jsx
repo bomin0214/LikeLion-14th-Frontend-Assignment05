@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import styles from './Timer.module.css';
 
 export default function Timer() {
 
     // 시간 담을 변수 time
-    const [time, setTime] = useState(0);
+    const [time, setTime] = useState(30);
 
     useEffect(() => {
         // 설정된 시간 간격마다 setInterval 골백 실행됨.
