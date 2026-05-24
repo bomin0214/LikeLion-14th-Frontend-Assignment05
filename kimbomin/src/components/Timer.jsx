@@ -20,8 +20,15 @@ export default function Timer() {
 
     return (
         // time이 0이면 '시간 종료!' 출력, 아니면 남은 시간 출력
-        <div className="text-2xl font-mono text-gray-500">
-            {time === 0 ? ' 💥 시간 종료!' : `남은 시간 : ${time}초`}
+         <div className="bg-white rounded-2xl shadow p-10 flex flex-col gap-4 w-96">
+        <span>💣</span>
+        <div>
+            <p className="text-gray-700">카운트다운</p>
+            <p className="text-sm text-gray-400">10초부터 0초까지 감소합니다</p>
         </div>
+        <p className="text-4xl text-blue-500 text-center">
+            {time === 0 ? '💥 시간 종료!' : `${time}초`}
+        </p>
+    </div>
     );
 }
