@@ -24,8 +24,13 @@ export default function Clock() {
     }, []);
 
     return (
-        <div className="text-4xl font-mono text-gray-700">
-            {clock}
+        <div className="bg-white rounded-2xl shadow p-10 flex flex-col gap-4 w-96">
+            <span>🕐</span>
+                <div>
+                    <p className="text-gray-700">현재 시각</p>
+                    <p className="text-sm text-gray-400">1초마다 시간이 업데이트됩니다</p>
+                </div>
+            <p className="text-4xl text-blue-500 text-center">{clock}</p>
         </div>
     );
 }
