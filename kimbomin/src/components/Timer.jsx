@@ -1,22 +1,30 @@
 import {useEffect, useState} from 'react';
 
 export default function Timer() {
-
-    // 시간 담을 변수 time
-    const [time, setTime] = useState(30);
+    const [time, setTime] = useState(0);
+    const [inputVal, setInputVal] = useState('');
+    const [running, setRunning] = useState(false);
 
     useEffect(() => {
-        // 설정된 시간 간격마다 setInterval 골백 실행됨.
-        const id = setInterval(() => {
-            setTime((time) => time - 1);
-    }, 1000);
+        if (!running) return;
+        if (time === 0) {
+            setRunning(false);
+            return;
+        }
 
-    // timer = 0 이면 카운트가 멈추게 된다.
-    if(time === 0) {
-        clearInterval(id);
+        const id = setInterval(() => {
+            setTime((t) => t - 1);
+        }, 1000);
+
+        return () => clearInterval(id);
+    }, [time, running]);
+
+    const handleStart = () => {
+        // 입력 x return
+        if (!inputVal) return;
+        setTime(Number(inputVal));
+        setRunning(true);
     }
-    return () => clearInterval(id);
-    }, [time]);
 
     return (
         // time이 0이면 '시간 종료!' 출력, 아니면 남은 시간 출력
@@ -24,8 +32,23 @@ export default function Timer() {
         <span>💣</span>
         <div>
             <p className="text-gray-700">카운트다운</p>
-            <p className="text-sm text-gray-400">10초부터 0초까지 감소합니다</p>
+            <p className="text-sm text-gray-400">초 입력 후 시작 버튼을 눌러주세요</p>
         </div>
+        <div className="flex gap-2">
+                <input
+                    type="number"
+                    value={inputVal}
+                    onChange={(e) => setInputVal(e.target.value)}
+                    placeholder="초 입력"
+                    className="border border-gray-300 rounded-lg px-3 py-2 w-full text-sm"
+                />
+                <button
+                    onClick={handleStart}
+                    className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm"
+                >
+                    시작
+                </button>
+            </div>
         <p className="text-4xl text-blue-500 text-center">
             {time === 0 ? '💥 시간 종료!' : `${time}초`}
         </p>
