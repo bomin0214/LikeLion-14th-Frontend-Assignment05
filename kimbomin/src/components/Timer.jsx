@@ -50,7 +50,11 @@ export default function Timer() {
                 </button>
             </div>
         <p className="text-4xl text-blue-500 text-center">
-            {time === 0 ? '💥 시간 종료!' : `${time}초`}
+            {running === false && time === 0 && inputVal !== '' 
+                ? '💥 시간 종료!' 
+                : !running && time === 0 
+                ? '⏱️ 대기중' 
+                : `${time}초`}
         </p>
     </div>
     );
